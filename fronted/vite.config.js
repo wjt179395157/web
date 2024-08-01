@@ -10,7 +10,7 @@ export default defineConfig({
     sourcemap: false, // 是否生成 source map 文件
     minify: 'esbuild', // 压缩选项，使用 esbuild
     rollupOptions: {
-      input: 'src/main.js', // 指定入口文件
+      input: 'index.html', // 指定入口文件
       output: {
         format: 'esm', // 输出格式
       },
