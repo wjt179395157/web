@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名声古迹</title>
+    <link rel="stylesheet" href="src/scenicspot.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="post">
+        <div class="post-title">Chandler Bing</div>
+        <div class="post-content">名胜古迹是历史与文化的瑰宝，承载着深厚的文化底蕴和悠久的历史记忆。无论是雄伟的长城、巍峨的兵马俑，还是古老的敦煌莫高窟、神秘的泰姬陵，这些人类智慧的杰作不仅展示了古代文明的辉煌，也为后人提供了宝贵的历史见证。漫步在这些古迹之中，我们仿佛穿越时光，感受古人的智慧和梦想。每一处名胜古迹都是历史的缩影，传递着不朽的文化精神，激励着我们铭记过去、珍视现在、展望未来。探索这些古迹，不仅是一场视觉的盛宴，更是一段心灵的旅程，让我们更加深刻地理解和珍惜我们共同的文化遗产。</div>
+        <img src="fronted/src/img15.png" alt="风景图片" class="post-image">
+        <img src="fronted/src/img16.png" alt="风景图片" class="post-image">
+        <img src="fronted/src/img17.png" alt="风景图片" class="post-image">
+        <div></div>
+        <hr class="custom-hr">
+        <div></div>
+        <div class="comment-section">
+            <div class="comment_title">评论:</div>
+            <div class="comment">
+                <span class="comment-author">王佳铭:</span>
+                <span class="comment-content">这看着也太好吃了。</span>
+            </div>
+            <div class="comment">
+                <span class="comment-author">张泽宇:</span>
+                <span class="comment-content">这一点也不好吃。</span>
+            </div>
+            <div id="comments"></div>
+            <div class="comment-form">
+                <textarea id="comment-input" rows="4" placeholder="添加评论..."></textarea>
+                <br><br>
+                <button onclick="addComment()">评论</button>
+                <button onclick="others()">查看他的活动情况</button>
+            </div>
+        </div>
+    </div>
+    <div id="existing-content"></div>
+    <div id="content-container">
+        <div id="content"></div>
+        <div id="images"></div>
+    </div>
+    <div class="comment-form">
+        <button onclick="addPost(1)">发帖</button>   
+        <button onclick="interest(1)">成员活动情况</button>
+    </div>
+       
+</div>
+
+<script>
+    
+    async function loadComments() {
+        try {
+            const response = await fetch('http://localhost:3000/testsights');
+            if (!response.ok) throw new Error('网络响应不正常');
+            const data = await response.json();
+            const commentsDiv = document.getElementById('comments');
+            commentsDiv.innerHTML = '';
+            data.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `<span class="comment-author">${comment.author}:</span><span class="comment-content">${comment.content}</span>`;
+                commentsDiv.appendChild(commentDiv);
+            });
+        } catch (error) {
+            console.error('加载评论失败:', error);
+        }
+    }
+
+    async function addComment() {
+        const commentText = document.getElementById('comment-input').value;
+        if (commentText.trim()) {
+            try {
+                const response = await fetch('http://localhost:3000/testsights', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ author: '新用户', content: commentText.trim() })
+                });
+                if (!response.ok) throw new Error('评论提交失败');
+                document.getElementById('comment-input').value = '';
+                loadComments();
+            } catch (error) {
+                console.error('添加评论失败:', error);
+            }
+        }
+    }
+
+    async function addComment1() {
+        const commentText = document.getElementById('comment1').value;
+        if (commentText.trim()) {
+            try {
+                const response = await fetch('http://localhost:3000/testall', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ author: '新用户', content: commentText.trim() })
+                });
+                if (!response.ok) throw new Error('评论提交失败');
+                document.getElementById('comment1').value = '';
+            } catch (error) {
+                console.error('添加评论失败:', error);
+            }
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadComments);
+
+    function addPost(id) {
+        const url = "post.html";
+        window.location.href = url;
+    }
+    
+    function getcomment(id) {
+        const url = "getmessage.html";
+        window.location.href = url;
+    }
+
+    function interest(id) {
+        const url = "showinterest.html";
+        window.location.href = url;
+    }
+
+    function others(id) {
+        const url = "otherpage.html";
+        window.location.href = url;
+    }
+    
+    
+    function getQueryParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const queryParts = queryString.split('&');
+        queryParts.forEach(part => {
+            const [key, value] = part.split('=');
+            params[decodeURIComponent(key)] = decodeURIComponent(value);
+        });
+        return params;
+    }
+
+    async function displayContent() {
+    const params = getQueryParams();
+    const id = params['id'];
+
+    if (id) {
+        try {
+            // 发起网络请求以获取数据
+            const response = await fetch(`http://localhost:3000/data?id=${id}`);
+            console.log('Response:', response); // 调试信息：输出响应对象
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // 解析 JSON 数据
+            const data = await response.json();
+            console.log('Data fetched:', data); // 调试信息：输出获取的数据
+
+            // 将数据存入 LocalStorage
+            localStorage.setItem('postData', JSON.stringify(data));
+
+            // 创建新的 post 元素
+            const newPost = document.createElement('div');
+            newPost.classList.add('post');
+
+            // 创建新的标题
+            const newPostTitle = document.createElement('div');
+            newPostTitle.classList.add('post-title');
+            newPostTitle.textContent = data.title || '新用户'; // 使用从数据中获取的标题
+
+            // 创建新的内容
+            const newPostContent = document.createElement('div');
+            newPostContent.classList.add('post-content');
+            newPostContent.textContent = data.content || '内容缺失'; // 使用从数据中获取的内容
+
+            // 将标题和内容添加到新的 post 中
+            newPost.appendChild(newPostTitle);
+            newPost.appendChild(newPostContent);
+
+            // 添加图片
+            if (data.files && Array.isArray(data.files)) {
+                data.files.forEach(file => {
+                    const img = document.createElement('img');
+                    img.src = `http://localhost:3000/${file.filename}`;
+                    img.alt = file.filename;
+                    img.classList.add('post-image');
+                    newPost.appendChild(img);
+                });
+            }
+
+            // 创建评论区域
+            const commentsSection = document.createElement('div');
+            commentsSection.classList.add('comment-section');
+
+            const commentsTitle = document.createElement('div');
+            commentsTitle.classList.add('comment_title');
+            commentsTitle.textContent = '评论:';
+            commentsSection.appendChild(commentsTitle);
+
+            // 创建评论表单
+            const commentForm = document.createElement('div');
+            commentForm.classList.add('comment-form');
+
+            const commentTextarea = document.createElement('textarea');
+            commentTextarea.id = 'comment1';
+            commentTextarea.rows = 4;
+            commentTextarea.placeholder = '添加评论...';
+            commentForm.appendChild(commentTextarea);
+
+            const commentButton = document.createElement('button');
+            commentButton.textContent = '评论';
+            commentButton.setAttribute('onclick', 'addComment1()'); // 去掉参数以简化
+            commentForm.appendChild(commentButton);
+
+            const commentButton1 = document.createElement('button');
+            commentButton1.textContent = '查看评论情况';
+            commentButton1.setAttribute('onclick', 'getcomment()'); // 去掉参数以简化
+            commentForm.appendChild(commentButton1);
+
+            commentsSection.appendChild(commentForm);
+
+            // 将评论区域添加到新的 post 中
+            newPost.appendChild(commentsSection);
+
+            // 将新的 post 添加到页面的内容容器中
+            const contentContainer = document.getElementById('content-container');
+            if (contentContainer) {
+                contentContainer.appendChild(newPost);
+            } else {
+                console.error('内容容器元素未找到。');
+            }
+        } catch (error) {
+            console.error('Error:', error); // 捕获并输出错误信息
+        }
+    } else {
+        console.error('没有找到数据 ID。');
+    }
+}
+    window.onload = displayContent();
+</script>
+</body>
+</html>
+

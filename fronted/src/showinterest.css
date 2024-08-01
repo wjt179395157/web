@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+header {
+    background-color: #0f6df2;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    font-size: 1.5em;
+}
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 2em auto;
+    background-color: white;
+    padding: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.member-activity {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.activity-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 1em 0;
+    flex: 1 1 calc(33% - 2em);
+    padding: 1em;
+    transition: transform 0.2s;
+}
+.activity-card:hover {
+    transform: scale(1.05);
+}
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+.activity-header h3 {
+    margin: 0;
+}
+.activity-time {
+    color: #777;
+}
+.activity-content {
+    margin: 0.5em 0;
+}
+.activity-stats {
+    font-weight: bold;
+    color: #555;
+}
+.activity-enthusiasm {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.bottom-right-image {
+    display: block;
+    position: fixed; /* 使用固定定位 */
+    bottom: 0; /* 距离底部 0 像素 */
+    right: 0; /* 距离左边 0 像素 */
+    width: 25%; /* 保持图片的原始宽度 */
+    height: auto; /* 保持图片的原始高度 */
+}

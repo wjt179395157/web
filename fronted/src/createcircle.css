@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color:white;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+    color: #333;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 12px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 10px;
+}
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.form-groups {
+display: flex;
+align-items: center;
+}
+
+.form-groups label {
+    margin-right: 10px;
+}
+
+.form-groups input[type="radio"] {
+    margin: 0 5px;
+}
+.bottom-left-image {
+    display: block;
+    position: fixed; /* 使用固定定位 */
+    bottom: 0; /* 距离底部 0 像素 */
+    left: 0; /* 距离左边 0 像素 */
+    width: 20%; /* 保持图片的原始宽度 */
+    height: auto; /* 保持图片的原始高度 */
+}   
+
+.bottom-right-image {
+    display: block;
+    position: fixed; /* 使用固定定位 */
+    bottom: 0; /* 距离底部 0 像素 */
+    right: 0; /* 距离左边 0 像素 */
+    width: 25%; /* 保持图片的原始宽度 */
+    height: auto; /* 保持图片的原始高度 */
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布贴子功能</title>
+    <link rel="stylesheet" href="src/post.css">
+</head>
+<body>
+    <div class="container">
+        <h1>发布新贴子</h1>
+        <form id="postForm" action="#" method="post" enctype="multipart/form-data">
+            <textarea name="content" placeholder="输入你的贴子内容..." required></textarea>
+            <label for="fileInput">选择图片：</label>
+            <input type="file" name="image" id="fileInput" accept="image/*" multiple>
+            <input type="submit" value="发布">
+        </form>
+    </div>
+    <div>
+        <img src="https://upload-bbs.mihoyo.com/upload/2022/07/13/199553467/b0c4c20f2bd3858a3890addc9e37e653_3430826311242672280.gif?x-oss-process=image/auto-orient,0/interlace,1/format,gif" alt="Image" class="bottom-right-image">
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('postForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // 生成一个随机 ID，假设 ID 是一个由 10 位数字和字母组成的字符串
+        const generateRandomId = () => {
+            return (Math.random() + 1).toString(36).substring(2, 12).toUpperCase();
+        };
+
+        // 获取随机 ID
+        const productionId = generateRandomId();
+
+        // 获取表单数据
+        const formData = new FormData(this);
+
+        // 将随机 ID 添加到表单数据中
+        formData.append('id', productionId);
+
+        fetch('http://localhost:3000/post', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // 构建 URL
+            const url = 'post?content=' + encodeURIComponent(data.content) + '&id=' + encodeURIComponent(productionId);
+
+            // 打开新窗口
+            window.open(url, '_blank');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('发布失败');
+        });
+    });
+});
+    </script>
+</body>
+</html>

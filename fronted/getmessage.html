@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息接收页面</title>
+    <link rel="stylesheet" href="src/getmessage.css">
+    <script>
+        async function loadComments() {
+            try {
+                const response = await fetch('http://localhost:3000/testall');
+                if (!response.ok) throw new Error('网络响应不正常');
+                const data = await response.json();
+                const messageList = document.querySelector('.message-list');
+                
+                data.forEach(comment => {
+                    const messageItem = document.createElement('li');
+                    messageItem.classList.add('message-item');
+
+                    const messageHeader = document.createElement('div');
+                    messageHeader.classList.add('message-header');
+                    messageHeader.innerHTML = `<span>评论人: ${comment.author}</span>`;
+
+                    const messageContent = document.createElement('div');
+                    messageContent.classList.add('message-content');
+                    messageContent.textContent = comment.content;
+
+                    messageItem.appendChild(messageHeader);
+                    messageItem.appendChild(messageContent);
+                    messageList.appendChild(messageItem);
+                });
+            } catch (error) {
+                console.error('加载评论失败:', error);
+            }
+        }
+
+        // 在页面加载时调用 loadComments 函数
+        window.onload = loadComments;
+    </script>
+</head>
+<body>
+    <header>
+        消息接收页面
+    </header>
+    <head2>
+        注意：仅限在此处查看自己帖子的评论
+    </head2>
+    <div class="container">
+        <ul class="message-list">
+            <li class="message-item">
+                <div class="message-header">
+                    <span>评论人: 张泽宇</span>
+                </div>
+                <div class="message-content">
+                    这一点也不好吃
+                </div>
+            </li>
+            <li class="message-item">
+                <div class="message-header">
+                    <span>评论人: 王佳铭</span>
+                </div>
+                <div class="message-content">
+                    这看着也太好吃了
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="comments"></div>
+    <footer>
+        Chandler Bing
+    </footer>
+</body>
+</html>

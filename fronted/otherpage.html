@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户详情</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #20a0cf;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .container {
+            width: 80%;
+            margin: 2em auto;
+            background: #fff;
+            padding: 2em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar-section {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 2em;
+        }
+
+        .section h2 {
+            margin-bottom: 0.5em;
+            border-bottom: 2px solid #84c4ef;
+            padding-bottom: 0.2em;
+        }
+
+        .section p {
+            margin-bottom: 1em;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>用户Chandler Bing的活动情况</h1>
+    </header>
+    <div class="container">
+        <div class="avatar-section">
+            <img id="avatar" src="fronted/src/img18.png" alt="头像" class="avatar">
+        </div>
+
+        <div class="section">
+            <h2>个人介绍：</h2>
+            <p id="description">我是林江森，一名地地道道的美剧狂热者。从高中开始，我就对美剧情有独钟，几乎每周都会沉浸在各类美剧的精彩剧情中。我对《权力的游戏》的复杂剧情充满了敬畏，对《绝命毒师》的悬疑与张力赞不绝口，对《老友记》的幽默感则是爱不释手。
+
+                我的收藏夹里不仅有大量的美剧剧集，还不乏各种关于美剧的周边和书籍。我还加入了几个美剧讨论小组，经常和志同道合的朋友们一起分析剧中的细节，探讨角色的心理变化。在我的生活中，美剧已经成为了不可或缺的一部分，它们带给了我无尽的欢乐和思考。
+                
+                除了追剧，我还喜欢为自己喜欢的剧集制作各种相关的粉丝内容，比如剧集回顾和角色分析。我也在社交媒体上分享我的追剧心得，并与其他剧迷互动交流。对我而言，美剧不仅是娱乐，更是一种生活的态度。</p>
+        </div>
+
+        <div class="section">
+            <h2>发帖情况：</h2>
+            <p id="posts">用户已经发帖35次。</p>
+        </div>
+
+        <div class="section">
+            <h2>评论情况：</h2>
+            <p id="comments">用户已经评论40次。</p>
+        </div>
+
+        <div class="section">
+            <h2>上线频率：</h2>
+            <p id="loginFrequency">用户平均每天上线3次。</p>
+        </div>
+
+        <div class="section">
+            <h2>活动积极性：</h2>
+            <p id="activityParticipation">9.5分</p>
+        </div>
+    </div>
+
+</body>
+</html>

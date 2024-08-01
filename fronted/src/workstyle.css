@@ -1,0 +1,126 @@
+.tabbar {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 350px;
+    margin: 0 auto;
+}
+
+.tabbar ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.tabbar ul li {
+    list-style: none;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    z-index: 1;
+}
+
+.tabbar ul li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none; /* Remove underline */
+}
+
+.tabbar ul li a .icon {
+    line-height: 70px;
+    font-size: 30px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tabbar ul li a .text {
+    font-size: 12px;
+    margin-top: 5px; /* Added margin for spacing */
+    opacity: 1; /* Always visible */
+    transition: opacity 0.3s, transform 0.3s; /* Smooth transitions */
+    transform: translateY(0); /* Initial position */
+}
+
+.tabbar ul li.active a .icon {
+    font-size: 23px;
+    transform: translateY(10px);
+}
+
+.tabbar ul li.active a .text {
+    transform: translateY(-20px); /* Slight upward shift for active item */
+}
+
+
+.left_picture {
+    display: block;
+    width: 40%;
+    height: auto;
+    position: relative; /* 相对于图片原本的位置进行调整 */
+    right: -50px; /* 向右偏移 10 像素 */
+    bottom: -20px; /* 向下偏移 20 像素 */
+}
+
+.right {
+    float: right;
+    width: 100px;
+    height: 500px;
+    padding: 5px;
+    margin-left: -900px; /* 向左移动 20 像素 */
+    margin-top: -350px;  /* 向上移动 10 像素 */
+}
+
+.content-right {
+    border-radius: 10px;
+    float: right;
+    margin-right: 70px;
+    margin-top: 10px;
+    width: 600px;
+    height: 380px;
+    font-size: 20px;
+    line-height: 2;
+    font-family: 'Roboto', sans-serif; /* 使用 Google Fonts 的 Roboto 字体 */
+    text-align: center; /* 使文本在容器中居中对齐 */
+    font-weight: bold; /* 使文本加粗 */
+    color: rgb(237, 239, 242);
+}
+
+
+.content-center {
+    text-align: center; /* 居中对齐内容 */
+    margin-top: 50px; /* 整体向下移动 */
+}
+.span2 {
+    display: block;
+    font-size: 24px; /* 设置标题文字的字体大小 */
+    margin-bottom: 20px; /* 标题与表格之间的间隔 */
+    font-weight: bold;
+}
+table {
+    width: 100%;
+    border-collapse: collapse; /* 合并边框 */
+    table-layout: fixed; /* 固定表格布局，确保单元格宽度均匀 */
+}
+td {
+    text-align: center; /* 水平居中单元格内容 */
+    padding: 10px; /* 增加单元格内边距 */
+}
+.span3 {
+    display: block;
+    font-size: 18px; /* 设置表格中文字的字体大小 */
+    margin-bottom: 15px; /* 增加文字之间的间隔 */
+    color: rgba(9, 9, 9, 0.771);
+}
+
+body {
+    background-image: url('Img5.png'); /* 替换为实际的图片路径 */
+    background-size: cover; /* 使背景图像覆盖整个页面 */
+    background-position: center; /* 居中显示背景图像 */
+    background-repeat: no-repeat; /* 不重复背景图像 */
+    font-family: 'Arial', sans-serif;
+}

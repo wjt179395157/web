@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兴趣圈</title>
+    <link rel="stylesheet" href="src/style.css">
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // 获取表单元素
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+
+            // 获取错误消息元素
+            const usernameError = document.getElementById('usernameError');
+            const emailError = document.getElementById('emailError');
+
+            // 清除之前的错误消息
+            usernameError.textContent = '';
+            emailError.textContent = '';
+
+            // 验证用户名
+            if (username.trim() === '') {
+                usernameError.textContent = '账号不能为空';
+                isValid = false;
+            }
+
+            // 验证邮箱
+            if (email.trim() === '') {
+                emailError.textContent = '密码不能为空';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function handleLogin() {
+        if (validateForm()) {
+        // 打开新窗口
+            window.open('worktable.html', '_blank');
+
+        // 从表单中获取数据
+            const dataInput1 = document.getElementById('username').value;
+            const dataInput2 = document.getElementById('email').value;
+            const requestData = { username: dataInput1, code: dataInput2 };
+
+        // 使用 fetch 发送数据
+            fetch('http://localhost:3000', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = `Server Response: ${JSON.stringify(data)}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('response').innerText = 'An error occurred';
+            });
+            }
+        }
+        
+        function handleRegister() {
+            window.open('register.html', '_blank');  // 替换成实际的注册页面 URL
+            document.getElementById('userForm').dispatchEvent(new Event('submit'));
+        }
+    </script>
+</body>
+</html>
+</head>
+ 
+<body>
+    <div class="login-app">
+        <div class="bottom-filling">
+            <div class="whole">
+                <div class="top-banner">
+                </div>
+                <div class="title-line">
+                    <span class="tit">
+                        兴趣圈
+                    </span>
+                </div>
+                <div class="login-box">
+                    <div class="login-left">
+                        <div class="qrcode-box">      
+                            <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.FozaNMTo4yw2KymW_iuXzwHaEK?w=287&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" alt="Image">
+                        </div>         
+                    </div>
+                    <div class="line"></div>
+                    <div class="login-right">
+                        <div class="form-login">
+                            <div class="input-box">
+                                <div>
+                                    <div class="type-tab">
+                                        <span>密码登录</span>
+                                    </div>
+                                    <form id="userForm">
+                                        <label for="username">账号:</label>
+                                        <input type="text" id="username" name="username" required>
+                                        <span id="usernameError" class="error"></span><br><br>
+                                
+                                        <label for="email">密码:</label>
+                                        <input type="text" id="email" name="email" required>
+                                        <span id="emailError" class="error"></span><br><br>
+                                
+                                        <div class="btn-box">
+                                            <button type="submit" class="btn-login" onclick="handleLogin()">
+                                                登录
+                                            </button>
+                                            <button type="" class="btn-reg" onclick="handleRegister()">
+                                                注册
+                                            </button>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="quote-section">
+        岁月漫长，心怀热爱，携手共赴星辰大海
+    </div>
+
+    <div>
+        <img src="fronted\src\img1.png" alt="Image" class="bottom-left-image">
+    </div>
+    
+    <div>
+        <img src="https://upload-bbs.mihoyo.com/upload/2022/07/13/199553467/b0c4c20f2bd3858a3890addc9e37e653_3430826311242672280.gif?x-oss-process=image/auto-orient,0/interlace,1/format,gif" alt="Image" class="bottom-right-image">
+    </div>
+
+</body>
+ 
+</html>

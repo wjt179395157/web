@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+}
+h1, h2 {
+    color: #333;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.section {
+    margin-bottom: 20px;
+}
+.section h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+.section p {
+    margin: 10px 0;
+}
+.centered-bold {
+    text-align: center;
+    font-weight: bold;
+}
+
+.green-button {
+    display: inline-block; /* 或者使用 block 使其在新行中显示 */
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #28a745; /* 绿色背景色 */
+    border: none;
+    border-radius: 5px;
+    text-align: center; /* 确保文本水平居中 */
+    text-decoration: none;
+    transition: background-color 0.3s; /* 动画效果 */
+    margin-top: 10px; /* 向下稍移动 */
+    margin-left: 650px; /* 向右稍移动 */
+}
+
+.green-button:hover {
+    background-color: #218838; /* 深绿色背景色 */
+}

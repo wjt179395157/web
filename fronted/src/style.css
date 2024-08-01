@@ -1,0 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+ 
+ 
+.login-app {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+ 
+.top-banner {
+    background: #00a0d8;
+    height: 86px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+ 
+.title-line {
+    width: 980px;
+    height: 28px;
+    margin: 0 auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 28px;
+    text-align: center;
+}
+ 
+.title-line .tit {
+    height: 38px;
+    line-height: 56px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 40px;
+    background: #fff;
+    text-align: center;
+}
+ 
+.login-box {
+    display: flex;
+    position: relative;
+    width: 980px;
+    margin: 0 auto;
+}
+ 
+.login-box::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+ 
+.login-box .login-left {
+    width: 489px;
+}
+ 
+.qrcode-login {
+    position: relative;
+    width: 480px;
+}
+ 
+.login-box .line {
+    border-right: 1px solid #ddd;
+    height: 300px;
+    margin-top: 28px;
+}
+ 
+.login-box .login-right {
+    padding-left: 45px;
+    width: 490px;
+    box-sizing: border-box;
+}
+ 
+.form-login {
+    position: relative;
+}
+ 
+.type-tab {
+    display: flex;
+    cursor: pointer;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+ 
+.form-login .input-box {
+    margin-top: 50px;
+    width: 414px;
+}
+ 
+.login-box .type-tab>span {
+    font-size: 14px;
+    color: #555;
+    letter-spacing: 0;
+    margin-right: 20px;
+}
+ 
+.el-input__inner {
+    display: inline-block;
+    background-color: #fff;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    line-height: 40px;
+    color: rgb(151, 155, 159);
+    box-sizing: border-box;
+}
+ 
+.el-input__inner:hover {
+    border-color: #02a7de;
+}
+ 
+
+.inputbox {
+    position: relative;
+    margin-left: 19px;
+}
+ 
+.inputbox>.el-input__inner {
+    width: 251px;
+    height: 40px;
+    padding: 0 15px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: .5s;
+}
+ 
+.el-input__inner:focus {
+    border-color: #00a0d8;
+}
+ 
+.message {
+    position: relative;
+    width: 399px;
+    height: 40px;
+    border: 1px solid #dcdfe6;
+    border-radius: 5px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+ 
+.inputbox2 {
+    width: 267px;
+    height: 40px;
+}
+ 
+.inputbox2>.el-input__inner {
+    width: 100%;
+    border: 0;
+    color: #c0c4cc;
+}
+ 
+.remember {
+    margin: 10px 0;
+    color: #717171;
+    width: 410px;
+    font-size: 12px;
+}
+ 
+.remember-tool {
+    display: flex;
+    position: relative;
+    width: 401px;
+    height: 16px;
+}
+ 
+ 
+.forget-password {
+    float: right;
+    color: #00a1d6;
+}
+ 
+.btn-box {
+    width: 401px;
+    height: 38px;
+}
+ 
+.btn-login {
+    float: left;
+    width: 184px;
+    height: 36px;
+    border: 1px solid #0381aa;
+    color: #fff;
+    background-color: #00a7de;
+    border-radius: 2px;
+    line-height: 38px;
+    font-size: 14px;
+    text-align: center;
+    transition: all .3s;
+}
+ 
+.btn-reg {
+    float: right;
+    width: 184px;
+    height: 36px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    color: #555;
+    background-color: #fff;
+    line-height: 38px;
+    font-size: 14px;
+    text-align: center;
+    transition: all .3s;
+}
+ 
+.btn-login:hover {
+    background: #00bee7;
+}
+ 
+.btn-reg:hover {
+    background: #f7f7f7;
+}
+ 
+.quote-section {
+    height: 33.33vh; /* 占据页面高度的1/3 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black; /* 文本颜色 */
+    font-size: 30px; /* 字体大小，可以根据需要调整 */
+    font-family: 'Arial', sans-serif; /* 字体样式，可以根据需要调整 */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.bottom-left-image {
+    display: block;
+    position: fixed; /* 使用固定定位 */
+    bottom: 0; /* 距离底部 0 像素 */
+    left: 0; /* 距离左边 0 像素 */
+    width: 20%; /* 保持图片的原始宽度 */
+    height: auto; /* 保持图片的原始高度 */
+}
+
+.bottom-right-image {
+    display: block;
+    position: fixed; /* 使用固定定位 */
+    bottom: 0; /* 距离底部 0 像素 */
+    right: 0; /* 距离左边 0 像素 */
+    width: 25%; /* 保持图片的原始宽度 */
+    height: auto; /* 保持图片的原始高度 */
+}
+
+.error {
+    color: red;
+}

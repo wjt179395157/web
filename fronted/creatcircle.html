@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建自己的兴趣圈</title>
+    <link rel="stylesheet" href="src/createcircle.css">
+    <script>
+        async function addContent() {
+            const name = document.getElementById('name').value;
+            const open = document.getElementById('open').checked;
+            const close = document.getElementById('close').checked;
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+            const rules = document.getElementById('rules').value;
+
+            if (name.trim()) {
+                try {
+                    const response = await fetch('http://localhost:3000/circle', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name: name.trim(), category: category.trim(), description: description.trim(), rules: rules.trim() })
+                    });
+                    if (!response.ok) throw new Error('评论提交失败');
+                    
+                    // 数据提交成功后跳转到指定页面
+                    window.location.href = 'mycircle.html';
+                } catch (error) {
+                    console.error('添加内容失败:', error);
+                }
+            }
+        }
+
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const category = document.getElementById('category').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const rules = document.getElementById('rules').value.trim();
+            
+            if (!name) {
+                alert('圈子名称不能为空');
+                return false;
+            }
+            
+            const open = document.getElementById('open').checked;
+            const close = document.getElementById('close').checked;
+            if (!open && !close) {
+                alert('请至少选择一个圈子属性（公开或不公开）');
+                return false;
+            }
+
+            if (!category || !description || !rules) {
+                alert('所有字段都是必需的');
+                return false;
+            }
+
+            addContent();
+            return false; // 阻止表单的默认提交
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>自己的兴趣圈</h2>
+        <form onsubmit="return validateForm()" id="postForm">
+            <div class="form-group">
+                <label for="name">圈子名称：</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-groups">
+                <label>圈子属性：</label>
+                <input type="radio" id="open" name="property" value="open">
+                <label for="open">公开</label>
+                <input type="radio" id="close" name="property" value="close">
+                <label for="close">不公开</label>
+            </div>
+            <br><br>
+            <div class="form-group">
+                <label for="category">圈子类别：</label>
+                <textarea id="category" name="category" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">圈子简介：</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="rules">圈子规约：</label>
+                <textarea id="rules" name="rules" rows="4" required></textarea>
+            </div>
+            <input type="submit" class="submit-button" value="提交">
+        </form>
+        <div>
+            <img src="fronted/src/img1.png" alt="Image" class="bottom-left-image">
+        </div>
+        
+        <div>
+            <img src="https://upload-bbs.mihoyo.com/upload/2022/07/13/199553467/b0c4c20f2bd3858a3890addc9e37e653_3430826311242672280.gif?x-oss-process=image/auto-orient,0/interlace,1/format,gif" alt="Image" class="bottom-right-image">
+        </div>
+    </div>
+</body>
+</html>

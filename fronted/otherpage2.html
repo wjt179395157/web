@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户详情</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #20a0cf;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .container {
+            width: 80%;
+            margin: 2em auto;
+            background: #fff;
+            padding: 2em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar-section {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 2em;
+        }
+
+        .section h2 {
+            margin-bottom: 0.5em;
+            border-bottom: 2px solid #84c4ef;
+            padding-bottom: 0.2em;
+        }
+
+        .section p {
+            margin-bottom: 1em;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>用户李娜的活动情况</h1>
+    </header>
+    <div class="container">
+        <div class="avatar-section">
+            <img id="avatar" src="fronted/src/img19.png" alt="头像" class="avatar">
+        </div>
+
+        <div class="section">
+            <h2>个人介绍：</h2>
+            <p id="description">大家好，我是李娜，一名热爱动物的狂热爱好者。从小我就和各种小动物一起长大，家里养着猫咪、狗狗，还有几只可爱的兔子。每天都能和它们一起玩耍、散步，让我的生活充满了乐趣和陪伴。
+
+                我不仅热爱宠物，还对野生动物非常感兴趣。每逢假期，我都喜欢去动物园或自然保护区观察不同的动物，了解它们的生活习性和生态环境。我参与过几次志愿者活动，帮助流浪动物寻找新家，希望能够为它们的生活带来些许改变。
+                
+                在社交媒体上，我也分享一些关于动物护理和保护的小知识，以及与我家宠物的日常趣事。对我来说，动物不仅是朋友，更是我生命中不可或缺的一部分，希望能够结识到更多有相同兴趣的朋友，一起交流和分享对动物的热爱！</p>
+        </div>
+
+        <div class="section">
+            <h2>发帖情况：</h2>
+            <p id="posts">用户已经发帖3次。发帖数量较少</p>
+        </div>
+
+        <div class="section">
+            <h2>评论情况：</h2>
+            <p id="comments">用户已经评论4次。</p>
+        </div>
+
+        <div class="section">
+            <h2>上线频率：</h2>
+            <p id="loginFrequency">用户平均每天上线0.5次。</p>
+        </div>
+
+        <div class="section">
+            <h2>活动积极性：</h2>
+            <p id="activityParticipation">3.5分</p>
+        </div>
+    </div>
+
+</body>
+</html>
