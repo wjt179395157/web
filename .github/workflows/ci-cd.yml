@@ -23,6 +23,9 @@ jobs:
   
       - name: Install dependencies
         run: cd fronted && npm install
+
+      - name: npm run build
+        run: cd fronted && npm run build
             
 
 
