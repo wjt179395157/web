@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 设置静态文件夹
+// 设置静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
 
@@ -40,6 +40,11 @@ let commentbook = []; // 模拟的评论数据库
 let commentsights = []; // 模拟的评论数据库
 let dataStoreid = [];
 
+// 设置路由，访问根路径时返回index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // 处理圈子创建请求
 app.post('/circle', (req, res) => {
     const { name, category, description, rules } = req.body;
@@ -58,20 +63,14 @@ app.post('/circle', (req, res) => {
     res.status(200).json({ message: '内容添加成功' });
 });
 
-// 假设 dataStore 是一个全局变量，用于存储圈子数据
-
-
+// 获取圈子数据
 app.get('/circle', (req, res) => {
-    // 检查 dataStore 是否包含数据
     if (dataStore.length === 0) {
         console.log("没有数据");
         return res.status(200).json({ message: '当前没有圈子数据' });
     }
 
-    // 发送 dataStore 中的所有数据作为响应
     console.log("有数据");
-
-    // 打印每个对象的 name 属性
     dataStore.forEach(item => {
         console.log(item.name);
     });
@@ -98,23 +97,18 @@ app.post('/register', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-    // 检查 dataStoreid 是否包含数据
     if (dataStoreid.length === 0) {
         console.log("没有数据");
         return res.status(200).json({ message: '当前没有圈子数据' });
     }
 
-    // 发送 dataStoreid 中的所有数据作为响应
     console.log("有数据");
-
-    // 打印每个对象的 name 属性
     dataStoreid.forEach(item => {
         console.log(item.name);
     });
 
     res.status(200).json(dataStoreid);
 });
-
 
 // 根据 ID 获取数据
 app.get('/data', (req, res) => {
@@ -169,7 +163,6 @@ app.delete('/data', (req, res) => {
             }
         });
 
-        // 从内存中删除记录
         delete dataStore[id];
 
         res.json({ message: '数据已删除' });
@@ -250,7 +243,7 @@ app.post('/testbook', (req, res) => {
     res.status(201).json(newComment);
 });
 
-// 定义一个 POST 路由。
+// 定义一个 POST 路由
 app.post('/', (req, res) => {
     console.log('Received request');
     const data = req.body;
