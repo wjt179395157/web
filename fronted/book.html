@@ -21,12 +21,12 @@
         <div class="comment-section">
             <div class="comment_title">评论:</div>
             <div class="comment">
-                <span class="comment-author">王佳铭:</span>
-                <span class="comment-content">这也太好看了。</span>
+                <span class="comment-author">小明:</span>
+                <span class="comment-content">刚刚读完路遥的《平凡的世界》，这本书让我对人性和社会有了更深刻的理解。</span>
             </div>
             <div class="comment">
-                <span class="comment-author">张泽宇:</span>
-                <span class="comment-content">这一点也不好看。</span>
+                <span class="comment-author">小王:</span>
+                <span class="comment-content">作者对人物内心的刻画和社会背景的描绘都非常出色。</span>
             </div>
             <div id="comments"></div>
             <div class="comment-form">
@@ -139,21 +139,13 @@
     }
 
     async function displayContent() {
-    const params = getQueryParams();
-    const id = params['id'];
-
-    if (id) {
         try {
             // 发起网络请求以获取数据
-            const response = await fetch(`http://localhost:3000/data?id=${id}`);
-            console.log('Response:', response); // 调试信息：输出响应对象
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+            const response = await fetch(`http://localhost:3000/post`);
 
             // 解析 JSON 数据
-            const data = await response.json();
+            const data1 = await response.json();
+            const data = data1[0];
             console.log('Data fetched:', data); // 调试信息：输出获取的数据
 
             // 将数据存入 LocalStorage
@@ -178,15 +170,14 @@
             newPost.appendChild(newPostContent);
 
             // 添加图片
-            if (data.files && Array.isArray(data.files)) {
-                data.files.forEach(file => {
-                    const img = document.createElement('img');
-                    img.src = `http://localhost:3000/${file.filename}`;
-                    img.alt = file.filename;
-                    img.classList.add('post-image');
-                    newPost.appendChild(img);
-                });
-            }
+            
+
+            const img = document.createElement('img');
+            img.src = `http://localhost:3000/${data.imagePaths}`;
+            img.alt =  data.imagePaths;
+            img.classList.add('post-image');
+            newPost.appendChild(img);
+
 
             // 创建评论区域
             const commentsSection = document.createElement('div');
@@ -232,10 +223,8 @@
         } catch (error) {
             console.error('Error:', error); // 捕获并输出错误信息
         }
-    } else {
-        console.error('没有找到数据 ID。');
-    }
-}
+    } 
+
     window.onload = displayContent();
 </script>
 </body>
