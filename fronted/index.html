@@ -13,15 +13,15 @@
 
             // 获取表单元素
             const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
             // 获取错误消息元素
             const usernameError = document.getElementById('usernameError');
-            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
 
             // 清除之前的错误消息
             usernameError.textContent = '';
-            emailError.textContent = '';
+            passwordError.textContent = '';
 
             // 验证用户名
             if (username.trim() === '') {
@@ -30,8 +30,8 @@
             }
 
             // 验证邮箱
-            if (email.trim() === '') {
-                emailError.textContent = '密码不能为空';
+            if (password.trim() === '') {
+                passwordError.textContent = '密码不能为空';
                 isValid = false;
             }
 
@@ -41,11 +41,11 @@
         function handleLogin() {
         if (validateForm()) {
         // 打开新窗口
-            window.open('worktable.html', '_blank');
+            window.open('worktable.html');
 
         // 从表单中获取数据
             const dataInput1 = document.getElementById('username').value;
-            const dataInput2 = document.getElementById('email').value;
+            const dataInput2 = document.getElementById('password').value;
             const requestData = { username: dataInput1, code: dataInput2 };
 
         // 使用 fetch 发送数据
@@ -106,9 +106,9 @@
                                         <input type="text" id="username" name="username" required>
                                         <span id="usernameError" class="error"></span><br><br>
                                 
-                                        <label for="email">密码:</label>
-                                        <input type="text" id="email" name="email" required>
-                                        <span id="emailError" class="error"></span><br><br>
+                                        <label for="password">密码:</label>
+                                        <input type="password" id="password" name="password" required>
+                                        <span id="passwordError" class="error"></span><br><br>
                                 
                                         <div class="btn-box">
                                             <button type="submit" class="btn-login" onclick="handleLogin()">

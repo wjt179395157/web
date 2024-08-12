@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自己的兴趣圈</title>
+    <script>
+        async function loads() {
+            try {
+                const response = await fetch('http://localhost:3000/register');
+                if (!response.ok) throw new Error('网络响应不正常');
+                const data = await response.json();
+
+                // 处理数组情况
+                if (Array.isArray(data) && data.length > 0) {
+                    // 假设我们只显示第一个条目的数据
+                    const firstItem = data[0];
+
+                    // 检查并设置每个字段的内容
+                    document.getElementById('name').textContent = firstItem.name || '您还没有创建个人账号，请返回登入界面，点击创建账号';
+                    document.getElementById('description').textContent = firstItem.description || '您还没有创建个人账号，请返回登入界面，点击创建账号';
+                    document.getElementById('rules').textContent = firstItem.rules || '您还没有创建个人账号，请返回登入界面，点击创建账号';
+                } else {
+                    // 如果数组为空或不是数组，显示相应的错误信息
+                    document.getElementById('name').textContent = '您还没有创建个人账号，请返回登入界面，点击创建账号';
+                    document.getElementById('description').textContent = '您还没有创建个人账号，请返回登入界面，点击创建账号';
+                    document.getElementById('rules').textContent = '您还没有创建个人账号，请返回登入界面，点击创建账号';
+                }
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                document.getElementById('name').textContent = '您还没有创建个人账号，请返回登入界面，点击创建账号';
+                document.getElementById('description').textContent = '您还没有创建个人账号，请返回登入界面，点击创建账号';
+                document.getElementById('rules').textContent = '您还没有创建个人账号，请返回登入界面，点击创建账号';
+            }
+        }
+
+        // 在页面加载时调用 loads 函数
+        window.onload = loads;
+    </script>
+  <link rel="stylesheet" crossorigin href="/assets/mypage-DYehR-ml.css">
+</head>
+<body>
+    <header>
+        <h1>自己的账号</h1>
+    </header>
+    <div class="container">
+        <div class="section">
+            <h2>昵称：</h2>
+            <p id="name">加载中...</p>
+        </div>
+
+        <div class="section">
+            <h2>个人介绍：</h2>
+            <p id="description">加载中...</p>
+        </div>
+
+        <div class="section">
+            <h2>兴趣爱好：</h2>
+            <p id="rules">加载中...</p>
+        </div>
+        <a href="worktable.html" class="green-button" target="_blank">返回主界面</a>
+    </div>
+    <footer>
+        <p>我的兴趣圈</p>
+    </footer>
+</body>
+</html>

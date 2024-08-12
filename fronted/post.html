@@ -21,53 +21,25 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('postForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+      document.getElementById('postForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
 
-        // 生成一个随机 ID，假设 ID 是一个由 10 位数字和字母组成的字符串
-        const generateRandomId = () => {
-            return (Math.random() + 1).toString(36).substring(2, 12).toUpperCase();
-        };
-
-        // 获取随机 ID
-        const productionId = generateRandomId();
-
-        // 获取表单数据
-        const formData = new FormData(this);
-
-        // 将随机 ID 添加到表单数据中
-        formData.append('id', productionId);
-
-        fetch('http://localhost:3000/post', {
+    try {
+        const response = await fetch('http://localhost:3000/post', {
             method: 'POST',
             body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            try {
-            // 创建 URL 对象来解析 document.referrer
-            const referrerUrl = new URL(document.referrer);
-        
-            // 构建基础 URL
-            const baseUrl = `${referrerUrl.origin}${referrerUrl.pathname}`;
-        
-            // 构建查询参数
-            const params = new URLSearchParams({
-                content: data.content,
-                id: data.id
-            });
-        
-            // 构建完整 URL
-            const url = `${baseUrl}?${params.toString()}`;
-        
-            // 打开新窗口
-            window.open(url, '_blank');
-        } catch (e) {
-            console.error('构建 URL 时出错:', e);
-        }
-    })
-    });
+        });
+
+        if (!response.ok) throw new Error('提交失败');
+
+        // 数据提交成功后跳转到指定页面
+        window.location.href = 'book.html';
+    } catch (error) {
+        console.error('添加内容失败:', error);
+    }
 });
     </script>
 </body>
